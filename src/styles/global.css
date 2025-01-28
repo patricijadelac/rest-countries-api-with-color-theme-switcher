@@ -1,1 +1,40 @@
 @import 'tailwindcss';
+@import './fonts.css';
+
+@theme {
+  /* Breakpoints */
+  --breakpoint-*: initial;
+  --breakpoint-s: 23.4375rem; /* 375px */
+  --breakpoint-m: 48rem; /* 768px */
+  --breakpoint-l: 90rem; /* 1440px */
+
+  /* Colors */
+  --color-*: initial;
+  --color-dark-blue: hsl(209, 23%, 22%);
+  --color-very-dark-blue: hsl(207, 26%, 17%);
+  --color-very-dark-blue-light-text: hsl(200, 15%, 8%);
+  --color-dark-gray: hsl(0, 0%, 52%);
+  --color-very-light-gray: hsl(0, 0%, 98%);
+  --color-white: hsl(0, 0%, 100%);
+
+  /* Typography */
+  --font-nunito-sans: Nunito Sans, sans-serif;
+  --text-h1: 2rem;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-nunito-sans);
+    font-size: var(--text-base);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--color-very-dark-blue-light-text);
+  }
+
+  h1 {
+    font-size: var(--text-h1);
+    font-weight: 700;
+    line-height: 1.375;
+  }
+}
+
