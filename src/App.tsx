@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Header from './components/Header';
+import DetailPage from './pages/DetailPage';
+import HomePage from './pages/HomePage';
+import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -20,11 +24,23 @@ export default function App() {
     }
   }, []);
 
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <HomePage />,
+      errorElement: <NotFoundPage />,
+    },
+    {
+      path: '/country',
+      element: <DetailPage />,
+    },
+  ]);
+
   return (
     <div data-theme={isDarkMode ? 'dark' : 'light'}>
       <Header isDarkMode={isDarkMode} onThemeToggle={handleThemeToggle} />
       <main>
-        <p>Hi! 👋🏻</p>
+        <RouterProvider router={router} />
       </main>
     </div>
   );
