@@ -39,7 +39,7 @@ export default function App() {
   return (
     <div data-theme={isDarkMode ? 'dark' : 'light'}>
       <Header isDarkMode={isDarkMode} onThemeToggle={handleThemeToggle} />
-      <main>
+      <main className="container">
         <RouterProvider router={router} />
       </main>
     </div>
