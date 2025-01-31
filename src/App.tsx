@@ -16,6 +16,14 @@ export default function App() {
     });
   };
 
+  // Update the data-theme attribute on the html element whenever the theme changes
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      'data-theme',
+      isDarkMode ? 'dark' : 'light'
+    );
+  }, [isDarkMode]);
+
   // Retrieve theme from localStorage on initial load
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -37,11 +45,11 @@ export default function App() {
   ]);
 
   return (
-    <div data-theme={isDarkMode ? 'dark' : 'light'}>
+    <>
       <Header isDarkMode={isDarkMode} onThemeToggle={handleThemeToggle} />
       <main className="container">
         <RouterProvider router={router} />
       </main>
-    </div>
+    </>
   );
 }

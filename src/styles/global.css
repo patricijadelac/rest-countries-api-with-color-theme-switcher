@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @import './fonts.css';
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @theme {
   /* Breakpoints */
   --breakpoint-*: initial;
@@ -31,6 +33,12 @@
     font-weight: 400;
     line-height: 1.25;
     color: var(--color-very-dark-blue-light-text);
+    background: var(--color-very-light-gray);
+
+    @variant dark {
+      color: var(--color-white);
+      background: var(--color-very-dark-blue);
+    }
   }
 
   h1 {
