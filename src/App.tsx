@@ -47,7 +47,7 @@ export default function App() {
   return (
     <>
       <Header isDarkMode={isDarkMode} onThemeToggle={handleThemeToggle} />
-      <main className="container">
+      <main className="container py-6 l:py-12">
         <RouterProvider router={router} />
       </main>
     </>
