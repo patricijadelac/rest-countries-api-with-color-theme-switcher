@@ -5,3 +5,9 @@ export const fetchAllCountries = async () => {
   if (!response.ok) throw new Error('Failed to fetch countries');
   return response.json();
 };
+
+export const fetchCountriesByRegion = async (region: string) => {
+  const response = await fetch(`${BASE_URL}/region/${region}`);
+  if (!response.ok) throw new Error('Failed to fetch countries by region');
+  return response.json();
+};
