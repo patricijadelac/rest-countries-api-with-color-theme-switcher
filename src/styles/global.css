@@ -12,18 +12,19 @@
 
   /* Colors */
   --color-*: initial;
-  --color-dark-blue: hsl(209, 23%, 22%);
-  --color-very-dark-blue: hsl(207, 26%, 17%);
-  --color-very-dark-blue-light-text: hsl(200, 15%, 8%);
-  --color-dark-gray: hsl(0, 0%, 52%);
-  --color-very-light-gray: hsl(0, 0%, 98%);
-  --color-white: hsl(0, 0%, 100%);
+  --color-dark-blue: hsl(209 23 22);
+  --color-very-dark-blue: hsl(207 26 17);
+  --color-very-dark-blue-light-text: hsl(200 15 8);
+  --color-dark-gray: hsl(0 0 52);
+  --color-very-light-gray: hsl(0 0 98);
+  --color-white: hsl(0 0 100);
 
   /* Typography */
   --font-nunito-sans: Nunito Sans, sans-serif;
 
   /* Shadow */
-  --shadow-custom: 0 2px 4px 0 rgba(0, 0, 0, 0.0562);
+  --shadow-custom: 0 2px 4px 0 rgba(0 0 0 / 5.62%);
+  --shadow-custom-dark: 0 0 7px 0 rgba(0 0 0 / 29.31%);
 }
 
 @layer base {
