@@ -39,7 +39,7 @@ export default function App() {
       errorElement: <NotFoundPage />,
     },
     {
-      path: '/country',
+      path: '/country/:countryName',
       element: <DetailPage />,
     },
   ]);
