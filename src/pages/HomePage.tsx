@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   fetchAllCountries,
   fetchCountriesByRegion,
@@ -79,14 +80,20 @@ export default function HomePage() {
       ) : (
         <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-10 px-10 m:px-0 m:gap-[75px]">
           {countries.map((country, index) => (
-            <CountryThumbnail
+            <Link
+              to={`/country/${country.name.common
+                .toLowerCase()
+                .replace(' ', '-')}`}
               key={index}
-              imgSrc={country.flags?.svg || ''}
-              country={country.name.common}
-              population={country.population}
-              region={country.region}
-              capital={country.capital?.[0] || 'N/A'}
-            />
+            >
+              <CountryThumbnail
+                imgSrc={country.flags?.svg || ''}
+                country={country.name.common}
+                population={country.population}
+                region={country.region}
+                capital={country.capital?.[0] || 'N/A'}
+              />
+            </Link>
           ))}
         </div>
       )}
