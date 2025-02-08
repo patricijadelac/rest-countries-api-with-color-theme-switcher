@@ -17,7 +17,7 @@ export default function DetailPage() {
     isLoading,
   } = useQuery<CountryProps[]>({
     queryKey: ['countries', countryName],
-    queryFn: () => fetchCountryByFullName(countryName?.replace('-', ' ')!),
+    queryFn: () => fetchCountryByFullName(countryName?.replaceAll('-', ' ')!),
     enabled: Boolean(countryName),
     staleTime: 1000 * 60 * 5,
   });

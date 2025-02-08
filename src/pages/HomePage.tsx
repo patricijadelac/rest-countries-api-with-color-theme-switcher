@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
   fetchAllCountries,
   fetchCountriesByRegion,
@@ -117,20 +116,7 @@ export default function HomePage() {
       {countriesList.length ? (
         <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-10 px-10 m:px-0 m:gap-[75px]">
           {countriesList.map((country) => (
-            <Link
-              to={`/country/${country.name.common
-                .toLowerCase()
-                .replace(' ', '-')}`}
-              key={country.name.common}
-            >
-              <CountryThumbnail
-                imgSrc={country.flags?.svg || ''}
-                country={country.name.common}
-                population={country.population}
-                region={country.region}
-                capital={country.capital?.[0] || 'N/A'}
-              />
-            </Link>
+            <CountryThumbnail country={country} key={country.name.common} />
           ))}
         </div>
       ) : (
