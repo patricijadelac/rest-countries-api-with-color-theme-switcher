@@ -4,14 +4,14 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import useClickOutside from '../hooks/useClickOutside';
 
-const REGIONS = ['Africa', 'America', 'Asia', 'Europe', 'Oceania'];
-
 interface RegionSelectProps {
+  regions: string[];
   selectedRegion: string;
   onRegionChange: (region: string) => void;
 }
 
 export default function RegionSelect({
+  regions,
   selectedRegion,
   onRegionChange,
 }: RegionSelectProps) {
@@ -24,15 +24,15 @@ export default function RegionSelect({
   };
 
   return (
-    <div ref={dropdownRef} className="relative w-50 text-xs">
+    <div ref={dropdownRef} className="relative w-50 text-xs m:text-sm">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex justify-between items-center px-6 py-[14px] w-full leading-5 bg-white rounded-[5px] shadow-custom cursor-pointer dark:bg-dark-blue"
+        className="flex justify-between items-center px-6 py-[14px] w-full leading-5 bg-white rounded-[5px] shadow-custom cursor-pointer m:px-8 m:py-[18px] dark:bg-dark-blue"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-labelledby="region-label"
       >
-        {selectedRegion || 'Filter by Region'}
+        {selectedRegion}
         <FontAwesomeIcon
           icon={chevronDown}
           className={clsx('transition-all', isOpen ? '-rotate-180' : '')}
@@ -42,11 +42,11 @@ export default function RegionSelect({
 
       {isOpen && (
         <div
-          className="absolute flex flex-col items-start gap-2 mt-1 px-6 py-4 w-full bg-white rounded-[5px] shadow-custom z-10 dark:bg-dark-blue"
+          className="absolute flex flex-col items-start gap-2 mt-1 px-6 py-4 w-full bg-white rounded-[5px] shadow-custom z-10 m:py-[18px] dark:bg-dark-blue"
           role="listbox"
           aria-labelledby="region-label"
         >
-          {REGIONS.map((region) => (
+          {regions.map((region) => (
             <button
               key={region}
               role="option"

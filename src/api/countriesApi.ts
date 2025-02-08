@@ -17,3 +17,9 @@ export const fetchCountryByName = async (name: string) => {
   if (!response.ok) throw new Error('Failed to fetch country details');
   return response.json();
 };
+
+export const fetchCountryByFullName = async (name: string) => {
+  const response = await fetch(`${BASE_URL}/name/${name}?fullText=true`);
+  if (!response.ok) throw new Error('Failed to fetch country details');
+  return response.json();
+};
