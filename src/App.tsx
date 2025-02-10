@@ -1,13 +1,6 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useEffect, useState } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Header from './components/Header';
-import DetailPage from './pages/DetailPage';
-import HomePage from './pages/HomePage';
-import NotFoundPage from './pages/NotFoundPage';
-
-const queryClient = new QueryClient();
 
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -36,27 +29,12 @@ export default function App() {
     }
   }, []);
 
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <HomePage />,
-      errorElement: <NotFoundPage />,
-    },
-    {
-      path: '/country/:countryName',
-      element: <DetailPage />,
-    },
-  ]);
-
   return (
     <>
       <Header isDarkMode={isDarkMode} onThemeToggle={handleThemeToggle} />
-      <QueryClientProvider client={queryClient}>
-        <main className="container py-6 l:py-12">
-          <RouterProvider router={router} />
-        </main>
-        <ReactQueryDevtools />
-      </QueryClientProvider>
+      <main className="container py-6 l:py-12">
+        <Outlet />
+      </main>
     </>
   );
 }
