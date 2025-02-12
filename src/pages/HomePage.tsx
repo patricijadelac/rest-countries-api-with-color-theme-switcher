@@ -88,16 +88,10 @@ export default function HomePage() {
     }
   }, [selectedRegion, countries, regions]);
 
-  if (countriesStatus === 'error') {
-    return <ErrorMessage title='' error={countriesError} />;
-  }
-
-  if (regionsStatus === 'error') {
-    return <ErrorMessage title='' error={regionsError} />;
-  }
-
   return (
     <>
+      <h1 className="sr-only">Explore the World</h1>
+
       <div className="flex justify-between flex-wrap gap-10 mb-8 l:mb-12">
         <CountrySearch
           value={searchQuery}
@@ -113,15 +107,25 @@ export default function HomePage() {
         />
       </div>
 
+      {(countriesStatus === 'pending' || regionsStatus === 'pending') && (
+        <p>Loading data, please wait...</p>
+      )}
+
+      {countriesStatus === 'error' && (
+        <ErrorMessage title="Countries Fetching Error" error={countriesError} />
+      )}
+
+      {regionsStatus === 'error' && (
+        <ErrorMessage title="Regions Fetching Error" error={regionsError} />
+      )}
+
       {countriesList.length ? (
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-10 px-10 m:px-0 m:gap-[75px]">
+        <div className="grid grid-cols-1 gap-10 px-10 m:grid-cols-2 m:gap-[75px] m:px-0 l:grid-cols-4">
           {countriesList.map((country) => (
             <CountryThumbnail country={country} key={country.name.common} />
           ))}
         </div>
-      ) : (
-        <p>No results.</p>
-      )}
+      ) : null}
     </>
   );
 }
