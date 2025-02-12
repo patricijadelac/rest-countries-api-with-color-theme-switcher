@@ -11,17 +11,23 @@ export default function CountrySearch({
   handleOnChange,
 }: CountrySearchProps) {
   return (
-    <div className="flex items-center gap-6 px-8 py-[14px] w-full max-w-[480px] text-xs leading-5 text-dark-gray bg-white rounded-[5px] shadow-custom m:py-[18px] m:text-sm dark:bg-dark-blue dark:text-inherit">
-      <label htmlFor="country-search" className="hidden">
-        Search for a country
+    <div className="input-wrapper flex items-center gap-7 px-8 py-[14px] max-w-[480px] text-xs leading-5 m:gap-6 m:py-[18px] m:text-sm">
+      <FontAwesomeIcon
+        icon={search}
+        className="text-base text-[#b2b2b2] dark:text-white"
+        aria-hidden="true"
+      />
+      <label htmlFor="country-search" className="sr-only">
+        Enter the name of the country you're looking for
       </label>
-      <FontAwesomeIcon icon={search} className="text-base" aria-hidden="true" />
       <input
-        id="country-search"
         type="text"
+        id="country-search"
+        name="country-search"
         value={value}
         onChange={handleOnChange}
         placeholder="Search for a country…"
+        className="w-full placeholder:text-[#c4c4c4] dark:placeholder:text-white"
       />
     </div>
   );

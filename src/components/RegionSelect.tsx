@@ -19,8 +19,6 @@ export default function RegionSelect({
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const dropdownRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false));
   const dropdownBtnRef = useRef<HTMLDivElement>(null);
-  const dropdownClasses =
-    'w-full bg-white rounded-[5px] shadow-custom dark:bg-dark-blue';
 
   const toggleDropdown = (open: boolean) => {
     setIsOpen(open);
@@ -107,10 +105,7 @@ export default function RegionSelect({
         tabIndex={0}
         onClick={() => toggleDropdown(!isOpen)}
         onKeyDown={handleKeyDown}
-        className={clsx(
-          'flex justify-between items-center px-6 py-[14px] leading-5 cursor-pointer m:py-[18px]',
-          dropdownClasses
-        )}
+        className="input-wrapper flex justify-between items-center px-6 py-[14px] leading-5 cursor-pointer m:py-[18px]"
       >
         {selectedRegion}
         <FontAwesomeIcon
@@ -125,10 +120,7 @@ export default function RegionSelect({
           id="listbox1"
           role="listbox"
           aria-labelledby="combo1-label"
-          className={clsx(
-            'absolute flex flex-col items-start gap-2 mt-1 px-6 py-4 z-10',
-            dropdownClasses
-          )}
+          className="input-wrapper absolute flex flex-col items-start gap-2 mt-1 px-6 py-4 z-10"
         >
           {regions.map((region, index) => (
             <div

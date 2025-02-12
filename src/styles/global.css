@@ -63,3 +63,7 @@
     max-width: 80rem;
   }
 }
+
+.input-wrapper {
+  @apply w-full bg-white rounded-[5px] shadow-custom dark:bg-dark-blue;
+}
