@@ -97,21 +97,21 @@ export default function DetailPage() {
     <div className="px-3 py-4 m:px-0 m:py-8" key={country.name.common}>
       <BackLink classes="mb-16 m:mb-20" />
 
-      <div className="grid gap-11 l:items-center l:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] l:gap-36">
+      <div className="grid gap-11 l:items-center l:grid-cols-[repeat(auto-fit,minmax(12.5rem,1fr))] l:gap-36">
         <img
           src={country.flags.svg}
           alt={country.flags.alt || `Flag of the  ${country.name.common}`}
           width={560}
           height={401}
-          className="rounded-[6px] shadow-custom m:rounded-[10px]"
+          className="rounded-md shadow-custom m:rounded-[0.625rem]"
         />
 
         <div>
-          <h1 className="mb-4 font-extrabold m:text-[32px] m:mb-[23px]">
+          <h1 className="mb-4 font-extrabold m:text-[2rem] m:mb-[1.438rem]">
             {country.name.common}
           </h1>
 
-          <div className="grid gap-[33px] text-sm leading-8 font-light m:text-base l:grid-cols-2 l:gap-[70px]">
+          <div className="grid gap-[2.063rem] text-sm leading-8 font-light m:text-base l:grid-cols-2 l:gap-[4.375rem]">
             <DetailList
               label="Basic information about the country"
               details={leftSideDetails}

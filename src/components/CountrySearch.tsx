@@ -11,7 +11,7 @@ export default function CountrySearch({
   handleOnChange,
 }: CountrySearchProps) {
   return (
-    <div className="input-wrapper flex items-center gap-7 px-8 py-[14px] max-w-[480px] text-xs leading-5 m:gap-6 m:py-[18px] m:text-sm">
+    <div className="input-wrapper flex items-center gap-7 px-8 py-3.5 max-w-120 text-xs leading-5 m:gap-6 m:py-4.5 m:text-sm">
       <FontAwesomeIcon
         icon={search}
         className="text-base text-[#b2b2b2] dark:text-white"

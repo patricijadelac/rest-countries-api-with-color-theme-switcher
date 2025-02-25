@@ -120,7 +120,7 @@ export default function HomePage() {
       )}
 
       {countriesList.length ? (
-        <div className="grid grid-cols-1 gap-10 px-10 m:grid-cols-2 m:gap-[75px] m:px-0 l:grid-cols-4">
+        <div className="grid grid-cols-1 gap-10 px-10 m:grid-cols-2 m:gap-[4.688rem] m:px-0 l:grid-cols-4">
           {countriesList.map((country) => (
             <CountryThumbnail country={country} key={country.name.common} />
           ))}

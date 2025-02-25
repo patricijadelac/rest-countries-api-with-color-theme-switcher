@@ -105,7 +105,7 @@ export default function RegionSelect({
         tabIndex={0}
         onClick={() => toggleDropdown(!isOpen)}
         onKeyDown={handleKeyDown}
-        className="input-wrapper flex justify-between items-center px-6 py-[14px] leading-5 cursor-pointer m:py-[18px]"
+        className="input-wrapper flex justify-between items-center px-6 py-3.5 leading-5 cursor-pointer m:py-4.5"
       >
         {selectedRegion}
         <FontAwesomeIcon

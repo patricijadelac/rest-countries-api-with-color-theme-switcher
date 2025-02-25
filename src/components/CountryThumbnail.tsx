@@ -45,16 +45,16 @@ export default function CountryThumbnail({ country }: CountryThumbnailProps) {
       onClick={handleClick}
       onKeyDown={(event) => handleKeyDown(event)}
       aria-label={`Go to details of ${name.common}`}
-      className="bg-white rounded-[5px] overflow-hidden shadow-custom cursor-pointer dark:bg-dark-blue"
+      className="bg-white rounded-[0.313rem] overflow-hidden shadow-custom cursor-pointer dark:bg-dark-blue"
     >
       <img
         src={flags.svg}
         alt={flags.alt || `Flag of ${name.common}`}
-        className="w-full h-[160px] object-cover"
+        className="w-full h-40 object-cover"
       />
 
-      <div className="flex flex-col gap-2 p-6 pb-[46px] text-sm leading-6 font-light">
-        <h2 className="text-lg leading-[26px] font-extrabold">
+      <div className="flex flex-col gap-2 p-6 pb-[2.875rem] text-sm leading-6 font-light">
+        <h2 className="text-lg leading-[1.625rem] font-extrabold">
           <Link
             to={`/country/${name.common.toLowerCase().replaceAll(' ', '-')}`}
             onClick={preventClickPropagation}
