@@ -1,4 +1,4 @@
-import sherlock from '../assets/images/sherlock-holmes-removed-bg.png';
+import sherlock from '../assets/images/sherlock-holmes.png';
 import BackLink from '../components/BackLink';
 
 export default function NotFoundPage() {
