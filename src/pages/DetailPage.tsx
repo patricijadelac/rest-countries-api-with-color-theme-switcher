@@ -95,7 +95,7 @@ export default function DetailPage() {
 
   return (
     <div className="px-3 py-4 m:px-0 m:py-8" key={country.name.common}>
-      <BackLink />
+      <BackLink classes="mb-16 m:mb-20" />
 
       <div className="grid gap-11 l:items-center l:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] l:gap-36">
         <img
