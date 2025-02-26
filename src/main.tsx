@@ -15,10 +15,11 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <NotFoundPage />,
+    errorElement: <NotFoundPage />, // Catches loader/render errors
     children: [
       { index: true, element: <HomePage /> },
       { path: '/country/:countryName', element: <DetailPage /> },
+      { path: '*', element: <NotFoundPage /> }, // Catches invalid paths
     ],
   },
 ]);
