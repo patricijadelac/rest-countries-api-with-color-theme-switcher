@@ -1,50 +1,37 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import {
-  fetchByListOfCodes,
-  fetchCountryByFullName,
-} from '../api/countriesApi';
 import BackLink from '../components/BackLink';
 import BorderCountries from '../components/BorderCountries';
 import DetailList from '../components/DetailList';
 import ErrorMessage from '../components/ErrorMessage';
-import { CountryProps } from '../types';
+import borderCountriesQuery from '../queryOptions/borderCountries';
+import countryQuery from '../queryOptions/country';
 import { formatNumber } from '../utils/format';
 
 export default function DetailPage() {
-  const { countryName } = useParams<{ countryName: string }>();
+  const { countryName = '' } = useParams<{ countryName: string }>();
 
   const {
-    data: countries,
-    status: countriesStatus,
-    error: countriesError,
-  } = useQuery<CountryProps[]>({
-    queryKey: ['countries', countryName],
-    queryFn: () => fetchCountryByFullName(countryName?.replaceAll('-', ' ')!),
-    enabled: !!countryName,
-    staleTime: 1000 * 60 * 5,
-  });
+    data: country,
+    isLoading: countryLoading,
+    error: countryError,
+  } = useQuery(countryQuery(countryName));
 
-  const country = countries?.[0];
+  const { data: borders, isLoading: bordersLoading } = useQuery(
+    borderCountriesQuery(countryName, country?.borders)
+  );
 
-  const { data: borders, isLoading: bordersLoading } = useQuery({
-    queryKey: ['borders', countryName],
-    queryFn: () => fetchByListOfCodes(country?.borders ?? []),
-    enabled: !!country?.borders?.length,
-    staleTime: 1000 * 60 * 5,
-  });
-
-  if (countriesStatus === 'pending') {
+  if (countryLoading) {
     return <p>Loading, please wait...</p>;
   }
 
-  if (countriesStatus === 'error') {
+  if (countryError) {
     return (
       <>
         <h1 className="mb-4 m:mb-8">Country details</h1>
         <ErrorMessage
           title="Whoops! Looks like the data went on a coffee break and forgot to come back."
-          error={countriesError}
+          error={countryError}
         />
       </>
     );
@@ -125,7 +112,7 @@ export default function DetailPage() {
             {bordersLoading ? (
               <p>Loading...</p>
             ) : (
-              <BorderCountries countries={borders} />
+              <BorderCountries countries={borders ?? []} />
             )}
           </div>
         </div>

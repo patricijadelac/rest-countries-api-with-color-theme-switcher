@@ -1,18 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import {
-  fetchAllCountries,
-  fetchCountriesByRegion,
-  fetchCountryByName,
-} from '../api/countriesApi';
+import { fetchCountryByName } from '../api/countriesApi';
 import CountrySearch from '../components/CountrySearch';
 import CountryThumbnail from '../components/CountryThumbnail';
 import ErrorMessage from '../components/ErrorMessage';
 import RegionSelect from '../components/RegionSelect';
+import allCountriesQuery from '../queryOptions/countries';
+import regionsQuery from '../queryOptions/regions';
 import { CountryProps } from '../types';
 
 const DEFAULT_OPTION = 'Filter by Region';
-const REGIONS = ['Africa', 'America', 'Asia', 'Europe', 'Oceania'];
 const DEBOUNCE_DELAY = 500;
 
 export default function HomePage() {
@@ -20,34 +17,17 @@ export default function HomePage() {
   const [selectedRegion, setSelectedRegion] = useState(DEFAULT_OPTION);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Fetch countries
   const {
     data: countries,
     status: countriesStatus,
     error: countriesError,
-  } = useQuery<CountryProps[]>({
-    queryKey: ['countries'],
-    queryFn: fetchAllCountries,
-    staleTime: 1000 * 60 * 5,
-  });
+  } = useQuery<CountryProps[]>(allCountriesQuery());
 
-  // Fetch regions
   const {
     data: regions,
     status: regionsStatus,
     error: regionsError,
-  } = useQuery({
-    queryKey: ['regions'],
-    queryFn: async () => {
-      const regionData = await Promise.all(
-        REGIONS.map(async (region) => ({
-          [region]: await fetchCountriesByRegion(region),
-        }))
-      );
-      return Object.assign({}, ...regionData);
-    },
-    staleTime: 1000 * 60 * 5,
-  });
+  } = useQuery<Record<string, CountryProps[]>>(regionsQuery());
 
   useEffect(() => {
     if (!searchQuery) {
@@ -101,7 +81,7 @@ export default function HomePage() {
         />
 
         <RegionSelect
-          regions={[DEFAULT_OPTION, ...REGIONS]}
+          regions={[DEFAULT_OPTION, ...Object.keys(regions || {})]}
           selectedRegion={selectedRegion}
           onRegionChange={setSelectedRegion}
         />

@@ -19,11 +19,13 @@ export const fetchCountriesByRegion = (region: string) =>
 export const fetchCountryByName = (name: string) =>
   fetchData(`${BASE_URL}/name/${name}`, 'Failed to fetch country details');
 
-export const fetchCountryByFullName = (name: string) =>
-  fetchData(
+export const fetchCountryByFullName = async (name: string) => {
+  const data = await fetchData(
     `${BASE_URL}/name/${name}?fullText=true`,
     'Failed to fetch country details'
   );
+  return data[0];
+};
 
 export const fetchByListOfCodes = async (codes: string[]) =>
   fetchData(
